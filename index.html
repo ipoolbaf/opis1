@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>курс Django | лекции + практика + тест</title>
+    <title>мои лекции и практики</title>
     <style>
         * {
             margin: 0;
@@ -12,596 +12,599 @@
         }
         body {
             background: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 25px 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px 15px;
         }
-        .container {
+        .box {
             max-width: 1100px;
             margin: 0 auto;
         }
-        .top {
-            margin-bottom: 35px;
-            border-left: 5px solid #1e6f3f;
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1e4663;
+            border-left: 5px solid #1e4663;
+            padding-left: 15px;
+        }
+        .sub {
+            font-size: 13px;
+            color: #4a627a;
+            margin-bottom: 25px;
             padding-left: 20px;
         }
-        .top h1 {
-            font-size: 2rem;
-            color: #1a3a44;
-            letter-spacing: -0.3px;
+        .form-card {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 18px 15px;
+            margin-bottom: 25px;
+            border-radius: 12px;
         }
-        .top p {
-            color: #4a627a;
-            margin-top: 8px;
-            font-size: 0.95rem;
-        }
-        /* три кнопки навигации */
-        .nav-links {
+        .form-row {
             display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1 1 150px;
+        }
+        .field label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #2c3e4e;
+            text-transform: uppercase;
+        }
+        .field input, .field select, .field textarea {
+            padding: 8px 10px;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            font-size: 13px;
+            background: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .field textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        .field input[type="file"] {
+            padding: 5px;
+        }
+        button {
+            background: #2c6b2f;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        button:hover {
+            background: #1f5222;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: #dbdbdb;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #222;
+            font-weight: normal;
+        }
+        .filter-btn.active {
+            background: #2c6b2f;
+            color: white;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+        }
+        .card {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .card:hover {
+            background: #fefef7;
+            border-color: #888;
+        }
+        .badge-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .disc {
+            background: #e9ecef;
+            padding: 2px 10px;
+            border-radius: 40px;
+            color: #1e4663;
+        }
+        .type-badge {
+            padding: 2px 10px;
+            border-radius: 40px;
+        }
+        .лекция {
+            background: #ffedd5;
+            color: #8b5a2b;
+        }
+        .практическая {
+            background: #d9f0fc;
+            color: #1f6392;
+        }
+        .card h4 {
+            font-size: 17px;
+            margin: 8px 0 6px;
+            color: #0c2f44;
+        }
+        .desc-preview {
+            font-size: 12px;
+            color: #4b5e72;
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+        .file-block {
+            background: #f2f2f2;
+            border-radius: 40px;
+            padding: 5px 10px;
+            margin: 8px 0 8px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-link {
+            text-decoration: none;
+            color: #2266aa;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .remove-file {
+            background: none;
+            border: none;
+            color: #c0392b;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 5px;
+            font-weight: bold;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #eee;
+            font-size: 10px;
+            color: #6c7f94;
+        }
+        .actions button {
+            background: #e7e7e7;
+            color: #2c3e50;
+            padding: 4px 10px;
+            font-size: 11px;
+            margin-left: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+        }
+        .empty {
+            text-align: center;
+            padding: 40px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            color: #6f8daa;
+            border: 1px dashed #bbb;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 10px;
+            text-align: center;
+            color: #8a9bb0;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        /* === модальное окно для полного текста === */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 30px 15px;
+        }
+        .modal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 12px 30px black;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 22px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #777;
+        }
+        .close-modal:hover { color: black; }
+        .modal h2 {
+            margin-bottom: 12px;
+            color: #1e4663;
+            padding-right: 30px;
+        }
+        .modal-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+        .modal-fulltext {
+            font-size: 15px;
+            line-height: 1.55;
+            color: #1e2f3c;
+            white-space: pre-wrap;
+            margin-bottom: 25px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+        }
+        .conclusion-block {
+            background: #f4f9fe;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 5px solid #2c6b2f;
+        }
+        .conclusion-block h4 {
+            margin-bottom: 8px;
+            color: #1e5a2a;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
         .nav-btn {
-            background: white;
-            border: 1px solid #cbdbe2;
-            padding: 8px 24px;
+            background: #e0e7ef;
+            color: #1e4663;
+            padding: 8px 16px;
             border-radius: 40px;
-            text-decoration: none;
-            color: #1f5e7e;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.1s;
-        }
-        .nav-btn.active {
-            background: #1e6f3f;
-            color: white;
-            border-color: #1e6f3f;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
         }
         .nav-btn:hover {
-            background: #e6edf4;
+            background: #cbdbe5;
         }
-        /* две колонки на главной */
-        .two-columns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        .block {
-            flex: 1;
-            min-width: 260px;
-            background: white;
-            border-radius: 24px;
-            padding: 20px 18px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            border: 1px solid #e0e6ed;
-        }
-        .block h2 {
-            font-size: 1.6rem;
-            margin-bottom: 18px;
-            border-bottom: 2px solid #e9edf2;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-        .list {
-            list-style: none;
-            margin-top: 12px;
-        }
-        .list li {
-            margin: 12px 0;
-        }
-        .list a {
-            display: block;
-            text-decoration: none;
-            background: #f5f9fe;
-            padding: 10px 16px;
-            border-radius: 60px;
-            color: #1a6b8f;
-            font-weight: 500;
-            font-size: 0.95rem;
-            border: 1px solid #dee6ef;
-            transition: 0.1s;
-        }
-        .list a:hover {
-            background: #e6f0f9;
-            color: #0c4e6b;
-        }
-        /* страница лекции/практики */
-        .page {
-            background: white;
-            border-radius: 32px;
-            padding: 30px 35px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.03);
-            border: 1px solid #e2e9f0;
-        }
-        .back {
-            display: inline-block;
-            margin-bottom: 22px;
-            background: #eef2f7;
-            padding: 6px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            text-decoration: none;
-            color: #2d5f7e;
-            font-weight: 500;
-        }
-        .page h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            color: #173e4c;
-        }
-        .badge {
-            background: #e8edf2;
-            display: inline-block;
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: #2b5e7a;
-        }
-        .content {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #1f2f3c;
-        }
-        .content h2, .content h3 {
-            margin: 1.3em 0 0.6em;
-            color: #1f4e6e;
-        }
-        .content p {
-            margin: 1em 0;
-        }
-        .content ul, .content ol {
-            margin: 0.7em 0 0.9em 1.8em;
-        }
-        .content li {
-            margin: 0.4em 0;
-        }
-
-        /* СТРАНИЦА ТЕСТА */
-        .test-page {
-            background: white;
-            border-radius: 32px;
-            padding: 30px 35px;
-            border: 1px solid #e2e9f0;
-        }
-        .test-header {
-            margin-bottom: 25px;
-        }
-        .question-block {
-            margin-bottom: 28px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eef2f8;
-        }
-        .question-text {
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            color: #1a4c61;
-        }
-        .options {
-            margin-left: 20px;
-        }
-        .option {
-            margin: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .option input {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-        .option label {
-            color: #2c3e4e;
-            cursor: pointer;
-        }
-        .test-actions {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .test-btn {
-            background: #1e6f3f;
-            border: none;
-            padding: 10px 26px;
-            border-radius: 40px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        .reset-btn {
-            background: #6c757d;
-        }
-        .result-area {
-            margin-top: 25px;
-            padding: 18px;
-            background: #e9f4e9;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        footer {
-            margin-top: 45px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #8ba0b5;
-            border-top: 1px solid #dce3ec;
-            padding-top: 22px;
-        }
-        @media (max-width: 700px) {
-            .page, .test-page { padding: 20px; }
-            .top h1 { font-size: 1.6rem; }
+        hr {
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="top">
-        <h1>📘 Django: от основ до деплоя</h1>
-        <p>лекции + практические работы + проверочный тест</p>
+<div class="box">
+    <div class="title">📁 мои записи</div>
+    <div class="sub">лекции + практика + pdf + полный текст + выводы</div>
+
+    <div class="form-card">
+        <div class="form-row">
+            <div class="field">
+                <label>Дисциплина</label>
+                <input type="text" id="disc" placeholder="Информатика, Прогр..." autocomplete="off">
+            </div>
+            <div class="field">
+                <label>Тип</label>
+                <select id="type">
+                    <option value="лекция">лекция</option>
+                    <option value="практическая">практика</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Название</label>
+                <input type="text" id="title" placeholder="Тема">
+            </div>
+            <div class="field">
+                <label>Краткое описание (превью)</label>
+                <input type="text" id="desc" placeholder="коротко">
+            </div>
+            <div class="field">
+                <label>Полный текст (лекция/задание)</label>
+                <textarea id="fullText" rows="2" placeholder="Вставь полный текст лекции или описание практики..."></textarea>
+            </div>
+            <div class="field">
+                <label>PDF (опционально)</label>
+                <input type="file" id="pdfFile" accept=".pdf">
+            </div>
+            <button id="addBtn">+ добавить</button>
+        </div>
     </div>
 
-    <div class="nav-links" id="navLinks">
-        <a href="#home" class="nav-btn" data-nav="home">📚 Лекции и практика</a>
-        <a href="#test" class="nav-btn" data-nav="test">📝 Тест (30 вопросов)</a>
+    <div class="filter-bar">
+        <button data-filter="all" class="filter-btn active">все</button>
+        <button data-filter="лекция" class="filter-btn">лекции</button>
+        <button data-filter="практическая" class="filter-btn">практика</button>
     </div>
 
-    <div id="app"></div>
+    <div id="cardsGrid" class="cards-grid"></div>
+    <footer>сохраняется в браузере • кликни по карточке → полный текст + выводы + навигация</footer>
+</div>
+
+<!-- модальное окно -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-meta">
+            <span id="modalDiscipline"></span>
+            <span id="modalType"></span>
+            <span id="modalDate"></span>
+        </div>
+        <div id="modalFullText" class="modal-fulltext"></div>
+        <div id="modalConclusion" class="conclusion-block"></div>
+        <div id="modalFileLink"></div>
+        <div class="nav-buttons">
+            <button id="prevBtn" class="nav-btn">◀ предыдущая</button>
+            <button id="homeBtn" class="nav-btn">🏠 главная</button>
+            <button id="nextBtn" class="nav-btn">следующая ▶</button>
+        </div>
+    </div>
 </div>
 
 <script>
+    // --- данные с поддержкой полного текста и выводов ---
+    let items = [];
+    const STORAGE_KEY = "simple_student_fulltext_v2";
+    let currentFilter = "all";
+    let currentModalId = null;   // id открытой записи
+    let modalOrderList = [];      // упорядоченный список id для навигации
 
-    const lectures = [
-        {
-            id: "lec1",
-            title: "Лекция 1. Введение в Django и окружение",
-            content: `
-                <h2>1.1. Что такое Django и веб-фреймворки</h2>
-                <p>500 (Internal Server Error) — на сервере произошла необработанная ошибка. Django располагается на стороне сервера и отвечает за приём запросов, выполнение программной логики и формирование ответов.</p>
-                <h2>1.2. Философия Django и его место среди фреймворков</h2>
-                <p>Django — это высокоуровневый веб-фреймворк на языке Python, следующий принципу "Batteries included". Из коробки Django включает: ORM, административную панель, систему маршрутизации URL, систему шаблонов, аутентификацию и защиту от CSRF/XSS.</p>
-                <h2>1.3. Интерпретатор Python и изоляция окружения</h2>
-                <p>Для работы с Django требуется Python 3.10+. Виртуальное окружение (venv) решает проблему конфликта зависимостей.</p>
-                <h2>1.4. Структура проекта Django</h2>
-                <p>manage.py — утилита для команд; settings.py — центральный файл конфигурации; urls.py — корневая маршрутизация.</p>
-                <h2>1.5. Управление зависимостями</h2>
-                <p>Файл requirements.txt фиксирует версии пакетов для воспроизводимости окружения.</p>
-            `
-        },
-        {
-            id: "lec2",
-            title: "Лекция 2. Организация кода. MVT, маршруты, шаблоны",
-            content: `
-                <h2>2.1. Проект и приложение</h2>
-                <p>Проект — весь сайт; приложение — модуль с конкретной функциональностью (блог, комментарии).</p>
-                <h2>2.2. Архитектура MVT</h2>
-                <p>Model — данные, View — бизнес-логика, Template — HTML-представление.</p>
-                <h2>2.3. Маршрутизация URL</h2>
-                <p>URLconf связывает URL с представлением. include() подключает маршруты приложений. Конвертеры: int, str, slug.</p>
-                <h2>2.4. Система шаблонов</h2>
-                <p>Переменные {{ variable }}, теги {% tag %}, фильтры. Наследование через {% extends %} и {% block %}.</p>
-                <h2>2.5. Статические файлы</h2>
-                <p>CSS, JS хранятся в static/. Тег {% load static %}. В продакшене статику отдаёт веб-сервер.</p>
-            `
-        },
-        {
-            id: "lec3",
-            title: "Лекция 3. Базы данных и ORM",
-            content: `
-                <h2>3.1. Модели</h2>
-                <p>Класс наследует models.Model, поля — CharField, TextField, DateTimeField.</p>
-                <h2>3.2. Миграции</h2>
-                <p>makemigrations создаёт миграции, migrate применяет их.</p>
-                <h2>3.3. ORM (CRUD)</h2>
-                <p>create(), filter(), get(), update(), delete(). QuerySet ленивый.</p>
-                <h2>3.4. Связи</h2>
-                <p>ForeignKey (один ко многим), ManyToManyField, OneToOneField. Параметр on_delete.</p>
-            `
-        },
-        {
-            id: "lec4",
-            title: "Лекция 4. Административная панель",
-            content: `
-                <h2>4.1. Django Admin</h2>
-                <p>Автоматический интерфейс для управления данными по пути /admin/.</p>
-                <h2>4.2. Кастомизация</h2>
-                <p>list_display, list_filter, search_fields, fieldsets, prepopulated_fields, actions.</p>
-            `
-        },
-        {
-            id: "lec5",
-            title: "Лекция 5. Формы и валидация",
-            content: `
-                <h2>5.1. Формы</h2>
-                <p>forms.Form и forms.ModelForm. Жизненный цикл: GET/POST, is_valid(), cleaned_data.</p>
-                <h2>5.2. Валидация</h2>
-                <p>clean_&lt;field&gt;, clean(), встроенные валидаторы.</p>
-                <h2>5.3. CSRF</h2>
-                <p>Тег {% csrf_token %} обязателен в каждой форме.</p>
-            `
-        },
-        {
-            id: "lec6",
-            title: "Лекция 6. Загрузка файлов (медиа)",
-            content: `
-                <h2>6.1. Медиа-файлы</h2>
-                <p>MEDIA_URL, MEDIA_ROOT. ImageField, FileField. enctype="multipart/form-data".</p>
-                <h2>6.2. Миниатюры и безопасность</h2>
-                <p>sorl-thumbnail, валидация размера и типа файлов.</p>
-            `
-        },
-        {
-            id: "lec7",
-            title: "Лекция 7. Отладка, оптимизация, деплой",
-            content: `
-                <h2>7.1. Debug Toolbar</h2>
-                <p>Показывает SQL-запросы, время выполнения.</p>
-                <h2>7.2. N+1 проблема</h2>
-                <p>select_related() и prefetch_related() для оптимизации.</p>
-                <h2>7.3. Продакшен</h2>
-                <p>DEBUG=False, ALLOWED_HOSTS, SECRET_KEY в .env, collectstatic, Gunicorn + Nginx.</p>
-            `
+    // загрузка
+    function loadData() {
+        let raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            try {
+                items = JSON.parse(raw);
+                items.forEach(i => {
+                    if (i.createdAt && typeof i.createdAt === "string") i.createdAt = new Date(i.createdAt);
+                    else if (!i.createdAt) i.createdAt = new Date();
+                    if (!i.fullText) i.fullText = "";
+                    if (!i.conclusion) i.conclusion = "";
+                });
+            } catch(e) { items = []; }
         }
-    ];
-
-    const practices = [
-        {
-            id: "pr1",
-            title: "Практика №1. Установка и настройка окружения",
-            content: `<ol><li>Проверьте версию Python (должна быть 3.10+).</li><li>Создайте директорию django_practice_1, виртуальное окружение venv.</li><li>Установите Django 4.2 LTS, создайте проект mynews.</li><li>Изучите settings.py: DEBUG, ALLOWED_HOSTS, INSTALLED_APPS.</li><li>Создайте requirements.txt, настройте LANGUAGE_CODE и TIME_ZONE.</li><li>Проверьте работу сервера на портах 8000 и 9000.</li></ol>`
-        },
-        {
-            id: "pr2",
-            title: "Практика №2. Маршруты, представления, шаблоны",
-            content: `<ol><li>Создайте приложение posts, зарегистрируйте в INSTALLED_APPS.</li><li>Напишите views: index, about, post_detail. Настройте маршруты.</li><li>Создайте шаблоны с наследованием (base.html, index.html).</li><li>Подключите статические файлы (CSS).</li><li>Используйте тег url для ссылок.</li></ol>`
-        },
-        {
-            id: "pr3",
-            title: "Практика №3. Модели, миграции, ORM",
-            content: `<ol><li>Создайте модель Post (title, slug, content, published_date, is_published).</li><li>Выполните makemigrations и migrate.</li><li>В shell создайте посты через ORM, отфильтруйте, обновите, удалите.</li><li>В представлении index передайте посты в шаблон, выведите циклом.</li><li>Сделайте детальную страницу по slug с обработкой 404.</li></ol>`
-        },
-        {
-            id: "pr4",
-            title: "Практика №4. Административная панель",
-            content: `<ol><li>Создайте суперпользователя.</li><li>Зарегистрируйте Post в admin.py, настройте list_display, list_filter, search_fields.</li><li>Добавьте prepopulated_fields для slug.</li><li>Создайте fieldsets и кастомное действие make_published.</li></ol>`
-        },
-        {
-            id: "pr5",
-            title: "Практика №5. Формы и комментарии",
-            content: `<ol><li>Создайте модель Comment (ForeignKey к Post, author_name, text).</li><li>Создайте CommentForm (ModelForm).</li><li>В post_detail обработайте POST-запрос, сохраните комментарий.</li><li>Выведите список комментариев в шаблоне.</li><li>Добавьте валидацию (clean_author_name, проверка на spam).</li><li>Сделайте форму поиска постов.</li></ol>`
-        },
-        {
-            id: "pr6",
-            title: "Практика №6. Загрузка файлов",
-            content: `<ol><li>Добавьте в модель Post поле ImageField.</li><li>Настройте MEDIA_URL, MEDIA_ROOT.</li><li>В шаблоне выведите изображение поста.</li><li>Добавьте в модель Comment поле image, настройте форму с enctype.</li><li>Сделайте валидацию размера (2МБ) и типа (PNG/JPEG/GIF).</li><li>Установите sorl-thumbnail для миниатюр.</li></ol>`
-        },
-        {
-            id: "pr7",
-            title: "Практика №7. Отладка, оптимизация, деплой",
-            content: `<ol><li>Настройте логирование в представлениях.</li><li>Установите django-debug-toolbar, посмотрите SQL-запросы.</li><li>Исправьте N+1 через prefetch_related.</li><li>Выключите DEBUG, настройте ALLOWED_HOSTS.</li><li>Вынесите SECRET_KEY в .env.</li><li>Выполните collectstatic, запустите через gunicorn.</li></ol>`
+        if (items.length === 0) {
+            let now = new Date();
+            items = [
+                { 
+                    id: "ex1", discipline: "Информатика", type: "лекция", 
+                    title: "Информатика — основы", 
+                    description: "системы счисления, алфавит, биты",
+                    fullText: "Лекция 1. Основы информатики.\n\nИнформатика — это наука о методах получения, хранения, обработки и передачи информации. Основополагающие понятия: данные, сигнал, информация. Рассматриваются позиционные системы счисления: двоичная, восьмеричная, шестнадцатеричная. Перевод чисел из одной системы в другую. Единицы измерения информации: бит, байт, килобайт и т.д. Архитектура компьютера: процессор, память, устройства ввода-вывода. Программное обеспечение: системное и прикладное. Алгоритмизация и базовые алгоритмические структуры (следование, ветвление, цикл).",
+                    conclusion: "Информатика оперирует понятиями информации и данных. Ключевые навыки: перевод между системами счисления, понимание устройства ПК, основы алгоритмизации. Эти знания фундаментальны для дальнейшего изучения программирования.",
+                    createdAt: new Date(now.getFullYear(), now.getMonth(), now.getDate()-1), fileName: null, fileData: null
+                },
+                { 
+                    id: "ex2", discipline: "Информатика", type: "практическая", 
+                    title: "Практика: системы счисления", 
+                    description: "задачи на перевод чисел",
+                    fullText: "Практическое задание №1.\n\nЗадача 1: Перевести число 101101₂ в десятичную систему.\nРешение: 1*2^5 + 0*2^4 + 1*2^3 + 1*2^2 + 0*2^1 + 1*2^0 = 32+0+8+4+0+1 = 45.\nЗадача 2: Перевести 10A₁₆ в десятичную.\nРешение: 1*16^2 + 0*16 + 10 = 256+10=266.\nЗадача 3: Сложить двоичные числа 1101 и 1011.\nОтвет: 11000₂.\nЗадача 4: Перевести 99₁₀ в двоичную (деление на 2): 99 = 1100011₂.\nДополнительные упражнения: перевести 0.75₁₀ в двоичную дробь, выполнить арифметику в разных СС.",
+                    conclusion: "Выводы: перевод чисел между системами — базовый навык. Регулярное решение задач помогает автоматизировать этот процесс. Важно понимать разрядность и веса разрядов.",
+                    createdAt: new Date(now.getFullYear(), now.getMonth(), now.getDate()-3), fileName: null, fileData: null
+                },
+                { 
+                    id: "ex3", discipline: "Программирование", type: "лекция", 
+                    title: "Python: введение", 
+                    description: "основы, переменные, типы",
+                    fullText: "Лекция по Python.\nPython — интерпретируемый язык высокого уровня. Переменные не требуют явного объявления типа. Основные типы данных: int, float, str, bool, list, tuple, dict. Условный оператор if-elif-else. Циклы while и for. Функции: определение через def, возврат результата. Пример: def sum(a,b): return a+b. Работа со списками: добавление, удаление, срезы. Ввод/вывод: input(), print(). Рекомендации по стилю кода (PEP8).",
+                    conclusion: "Python прост для начинающих, но мощный. Освоив типы данных, условия и циклы, можно переходить к решению алгоритмических задач и работе с библиотеками.",
+                    createdAt: new Date(now.getFullYear(), now.getMonth(), now.getDate()-5), fileName: null, fileData: null
+                }
+            ];
+            save();
         }
-    ];
+    }
 
-    const testQuestions = [
-        { question: "Какой принцип лежит в основе Django?", options: ["Batteries included", "Do it yourself", "Microservices first", "No default ORM"], correct: 0 },
-        { question: "Какая версия Python минимально требуется для Django 4.2?", options: ["3.6", "3.8", "3.10", "3.12"], correct: 2 },
-        { question: "Что такое виртуальное окружение в Python?", options: ["Виртуальная машина", "Изолированная директория с интерпретатором и пакетами", "Облачное хранилище", "Система контроля версий"], correct: 1 },
-        { question: "Какой файл является точкой входа для команд управления проектом Django?", options: ["settings.py", "urls.py", "manage.py", "wsgi.py"], correct: 2 },
-        { question: "Что означает аббревиатура MVT в Django?", options: ["Model-View-Template", "Model-View-Controller", "Module-View-Test", "Method-View-Tag"], correct: 0 },
-        { question: "Какая функция используется для подключения маршрутов приложения в корневой urls.py?", options: ["connect()", "path()", "include()", "route()"], correct: 2 },
-        { question: "Какой конвертер в маршрутах Django извлекает целое число из URL?", options: ["<str:>", "<int:>", "<slug:>", "<path:>"], correct: 1 },
-        { question: "Как в шаблоне Django вывести переменную?", options: ["{ variable }", "{{ variable }}", "{% variable %}", "# variable #"], correct: 1 },
-        { question: "Какой тег используется для наследования шаблонов?", options: ["{% include %}", "{% load %}", "{% extends %}", "{% block %}"], correct: 2 },
-        { question: "Где следует хранить статические файлы (CSS, JS) в приложении Django?", options: ["В папке templates", "В папке static", "В корне проекта", "В папке media"], correct: 1 },
-        { question: "Какая команда создаёт миграции на основе изменений в моделях?", options: ["migrate", "makemigrations", "sqlmigrate", "showmigrations"], correct: 1 },
-        { question: "Какой метод ORM возвращает все записи модели?", options: ["get()", "filter()", "all()", "objects.all()"], correct: 2 },
-        { question: "Что делает метод select_related() в Django ORM?", options: ["Выполняет JOIN для уменьшения запросов", "Удаляет дубликаты", "Выбирает случайные записи", "Сортирует результаты"], correct: 0 },
-        { question: "Какое поле используется для связи 'один ко многим'?", options: ["OneToOneField", "ManyToManyField", "ForeignKey", "RelationField"], correct: 2 },
-        { question: "Как зарегистрировать модель в административной панели?", options: ["admin.register(MyModel)", "admin.site.add(MyModel)", "admin.site.register(MyModel)", "admin.add_model(MyModel)"], correct: 2 },
-        { question: "Какой атрибут ModelAdmin определяет колонки в списке записей?", options: ["list_filter", "list_display", "search_fields", "fields"], correct: 1 },
-        { question: "Для чего используется {% csrf_token %} в формах Django?", options: ["Для аутентификации", "Для защиты от CSRF-атак", "Для шифрования данных", "Для кэширования"], correct: 1 },
-        { question: "Какой метод формы вызывается для валидации всех полей?", options: ["validate()", "check()", "is_valid()", "clean()"], correct: 2 },
-        { question: "Что нужно добавить в форму для загрузки файлов?", options: ["method='get'", "enctype='multipart/form-data'", "enctype='text/plain'", "method='put'"], correct: 1 },
-        { question: "Какая библиотека необходима для работы ImageField?", options: ["Pillow", "NumPy", "OpenCV", "Matplotlib"], correct: 0 },
-        { question: "Какая переменная в settings.py задаёт префикс URL для медиа-файлов?", options: ["STATIC_URL", "MEDIA_ROOT", "MEDIA_URL", "FILE_URL"], correct: 2 },
-        { question: "Что произойдёт при установке DEBUG = False без настройки ALLOWED_HOSTS?", options: ["Сайт будет работать медленнее", "Django вернёт Bad Request (400)", "Ничего не изменится", "Сайт упадёт с 500 ошибкой"], correct: 1 },
-        { question: "Какая команда собирает все статические файлы в одну директорию?", options: ["staticfiles", "collectstatic", "findstatic", "runstatic"], correct: 1 },
-        { question: "Какой сервер обычно используется для запуска Django в продакшене?", options: ["runserver", "Gunicorn", "Flask", "Apache Tomcat"], correct: 1 },
-        { question: "Что такое N+1 проблема в Django ORM?", options: ["Проблема с индексами", "Много лишних запросов к БД при обращении к связанным объектам", "Ошибка при миграциях", "Конфликт версий Python"], correct: 1 },
-        { question: "Какой метод используется для массового обновления QuerySet?", options: ["update()", "refresh()", "modify()", "change()"], correct: 0 },
-        { question: "Что такое slug в контексте Django?", options: ["Тип базы данных", "Человеко-читаемый идентификатор в URL", "Система логирования", "Модуль аутентификации"], correct: 1 },
-        { question: "Какая панель инструментов помогает отлаживать SQL-запросы?", options: ["Django Admin", "Debug Toolbar", "Sentry", "PyCharm Debugger"], correct: 1 },
-        { question: "Какой метод в форме обрабатывает валидацию конкретного поля?", options: ["clean()", "clean_fieldname()", "validate_fieldname()", "is_valid_field()"], correct: 1 },
-        { question: "Для чего нужен файл requirements.txt?", options: ["Для документации", "Для фиксации версий всех зависимостей", "Для конфигурации сервера", "Для тестов"], correct: 1 }
-    ];
+    function save() {
+        let toStore = items.map(i => ({
+            ...i,
+            createdAt: i.createdAt instanceof Date ? i.createdAt.toISOString() : i.createdAt
+        }));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore));
+    }
 
-    let activeTab = "home"; // home, test
+    function genId() {
+        return Date.now() + '-' + Math.random().toString(36).substring(2, 10);
+    }
 
-    function setActiveNav() {
-        const btns = document.querySelectorAll('.nav-btn');
-        btns.forEach(btn => {
-            const navVal = btn.getAttribute('data-nav');
-            if ((navVal === 'home' && activeTab === 'home') || (navVal === 'test' && activeTab === 'test')) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
+    function readPdf(file) {
+        return new Promise((resolve, reject) => {
+            let reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject();
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function addItem(discipline, type, title, description, fullText, file) {
+        if (!discipline.trim()) { alert("напиши дисциплину"); return false; }
+        if (!title.trim()) { alert("напиши название"); return false; }
+        let fileData = null, fileName = null;
+        if (file && file.type === "application/pdf") {
+            if (file.size > 20 * 1024 * 1024) { alert("PDF больше 20мб"); return false; }
+            try {
+                fileData = await readPdf(file);
+                fileName = file.name;
+            } catch(e) { alert("ошибка чтения файла"); return false; }
+        } else if (file && file.size > 0) {
+            alert("только PDF файлы"); return false;
+        }
+        // авто-генерация выводов, если поле fullText не пустое, но можно потом редактировать.
+        let conclusionText = `Выводы по ${type === 'лекция' ? 'лекции' : 'практической работе'}: изученный материал закреплён. Рекомендуется повторить ключевые моменты.`;
+        if (fullText && fullText.trim().length > 20) {
+            conclusionText = `📌 Выводы: ${fullText.trim().substring(0, 150)}... Практическое применение полученных знаний важно для дальнейшего обучения.`;
+        }
+        let newItem = {
+            id: genId(),
+            discipline: discipline.trim(),
+            type: type,
+            title: title.trim(),
+            description: description.trim() || "—",
+            fullText: fullText.trim() || "Полный текст не добавлен. Отредактируй запись, чтобы вставить содержание.",
+            conclusion: conclusionText,
+            createdAt: new Date(),
+            fileName: fileName,
+            fileData: fileData
+        };
+        items.unshift(newItem);
+        save();
+        return true;
+    }
+
+    function deleteItem(id) {
+        items = items.filter(i => i.id !== id);
+        save();
+        if (currentModalId === id) closeModal();
+        render();
+    }
+
+    function editItem(id) {
+        let item = items.find(i => i.id === id);
+        if (!item) return;
+        let newTitle = prompt("название:", item.title);
+        if (newTitle !== null && newTitle.trim() !== "") item.title = newTitle.trim();
+        let newDesc = prompt("краткое описание (превью):", item.description);
+        if (newDesc !== null) item.description = newDesc.trim() || "—";
+        let newDisc = prompt("дисциплина:", item.discipline);
+        if (newDisc !== null && newDisc.trim() !== "") item.discipline = newDisc.trim();
+        let newFull = prompt("полный текст (лекция/практика):", item.fullText);
+        if (newFull !== null) item.fullText = newFull.trim() || "—";
+        let newConc = prompt("выводы (внизу лекции):", item.conclusion);
+        if (newConc !== null) item.conclusion = newConc.trim() || "Выводы: материал усвоен.";
+        let changeType = confirm("сменить тип? (OK = лекция / Отмена = практика)");
+        if (changeType !== null) {
+            item.type = changeType === true ? "лекция" : "практическая";
+        }
+        save();
+        render();
+        if (currentModalId === id) {
+            openModalById(id);
+        }
+    }
+
+    function removeFile(id) {
+        let item = items.find(i => i.id === id);
+        if (item && item.fileData) {
+            if (confirm("удалить PDF?")) {
+                item.fileData = null;
+                item.fileName = null;
+                save();
+                render();
+                if (currentModalId === id) openModalById(id);
             }
+        } else {
+            alert("нет PDF");
+        }
+    }
+
+    function downloadPDF(fileData, fileName) {
+        let a = document.createElement('a');
+        a.href = fileData;
+        a.download = fileName || "документ.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function getFiltered() {
+        let filtered = items.filter(i => {
+            if (currentFilter === "all") return true;
+            return i.type === currentFilter;
         });
+        filtered.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return filtered;
     }
 
-    function renderHome() {
-        const lecItems = lectures.map(l => `<li><a href="#lec_${l.id}">📘 ${escapeHtml(l.title)}</a></li>`).join('');
-        const pracItems = practices.map(p => `<li><a href="#prac_${p.id}">🛠️ ${escapeHtml(p.title)}</a></li>`).join('');
-        return `
-            <div class="two-columns">
-                <div class="block">
-                    <h2>📖 Лекции</h2>
-                    <ul class="list">${lecItems}</ul>
-                </div>
-                <div class="block">
-                    <h2>✍️ Практические работы</h2>
-                    <ul class="list">${pracItems}</ul>
-                </div>
-            </div>
-        `;
+    // обновить порядок для модалки (текущий отфильтрованный и отсортированный)
+    function updateModalOrder() {
+        let filtered = getFiltered();
+        modalOrderList = filtered.map(i => i.id);
     }
 
-    function renderLecture(id) {
-        const lec = lectures.find(l => l.id === id);
-        if (!lec) return `<div class="page"><p>Лекция не найдена</p><a href="#home" class="back">← назад</a></div>`;
-        return `
-            <div class="page">
-                <a href="#home" class="back">← ко всем лекциям и практикам</a>
-                <h1>${escapeHtml(lec.title)}</h1>
-                <div class="badge">📘 лекция</div>
-                <div class="content">${lec.content}</div>
-            </div>
-        `;
-    }
-
-    function renderPractice(id) {
-        const prac = practices.find(p => p.id === id);
-        if (!prac) return `<div class="page"><p>Практическая работа не найдена</p><a href="#home" class="back">← назад</a></div>`;
-        return `
-            <div class="page">
-                <a href="#home" class="back">← ко всем лекциям и практикам</a>
-                <h1>${escapeHtml(prac.title)}</h1>
-                <div class="badge">🛠️ практическое задание</div>
-                <div class="content">${prac.content}</div>
-            </div>
-        `;
-    }
-
-
-    let userAnswers = new Array(testQuestions.length).fill(null);
-    let testSubmitted = false;
-
-    function renderTest() {
-        const savedAnswers = userAnswers;
-        const questionsHtml = testQuestions.map((q, idx) => {
-            const selected = savedAnswers[idx];
-            return `
-                <div class="question-block" data-qidx="${idx}">
-                    <div class="question-text">${idx+1}. ${escapeHtml(q.question)}</div>
-                    <div class="options">
-                        ${q.options.map((opt, optIdx) => `
-                            <div class="option">
-                                <input type="radio" name="q${idx}" value="${optIdx}" id="q${idx}_${optIdx}" ${selected === optIdx ? 'checked' : ''} ${testSubmitted ? 'disabled' : ''}>
-                                <label for="q${idx}_${optIdx}">${escapeHtml(opt)}</label>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        return `
-            <div class="test-page">
-                <div class="test-header">
-                    <h1>📝 Проверочный тест по курсу Django</h1>
-                    <p>30 вопросов. Выберите один правильный ответ на каждый вопрос.</p>
-                </div>
-                <form id="testForm">
-                    ${questionsHtml}
-                    <div class="test-actions">
-                        <button type="button" id="checkTestBtn" class="test-btn" ${testSubmitted ? 'disabled' : ''}>✅ Проверить ответы</button>
-                        <button type="button" id="resetTestBtn" class="test-btn reset-btn">🔄 Сбросить все ответы</button>
-                    </div>
-                </form>
-                <div id="testResult" class="result-area" style="${testSubmitted ? '' : 'display:none'}">
-                    ${testSubmitted ? renderResult() : ''}
-                </div>
-            </div>
-        `;
-    }
-
-    function renderResult() {
-        let correctCount = 0;
-        for (let i = 0; i < testQuestions.length; i++) {
-            if (userAnswers[i] === testQuestions[i].correct) correctCount++;
+    function openModalById(id) {
+        let item = items.find(i => i.id === id);
+        if (!item) return;
+        currentModalId = id;
+        updateModalOrder();
+        document.getElementById("modalTitle").innerText = item.title;
+        document.getElementById("modalDiscipline").innerHTML = `📖 ${escapeHtml(item.discipline)}`;
+        let typeText = item.type === 'лекция' ? '📘 лекция' : '🔧 практическая работа';
+        document.getElementById("modalType").innerHTML = typeText;
+        let dateStr = item.createdAt instanceof Date ? item.createdAt.toLocaleDateString('ru-RU') : "";
+        document.getElementById("modalDate").innerHTML = `📅 ${dateStr}`;
+        // полный текст
+        let fullHtml = escapeHtml(item.fullText).replace(/\n/g, '<br>');
+        document.getElementById("modalFullText").innerHTML = fullHtml || "<i>нет содержания</i>";
+        // выводы
+        let conclusionHtml = `<h4>✅ Выводы</h4><p>${escapeHtml(item.conclusion).replace(/\n/g, '<br>')}</p>`;
+        document.getElementById("modalConclusion").innerHTML = conclusionHtml;
+        // ссылка на PDF, если есть
+        let fileHtml = '';
+        if (item.fileData && item.fileName) {
+            fileHtml = `<div style="margin: 10px 0;"><button id="modalDownloadPdf" style="background:#2c6b2f;">📎 скачать PDF: ${escapeHtml(item.fileName)}</button></div>`;
         }
-        const percent = Math.round((correctCount / testQuestions.length) * 100);
-        let grade = "";
-        if (percent >= 85) grade = "Отлично! 🎉";
-        else if (percent >= 65) grade = "Хорошо 👍";
-        else if (percent >= 45) grade = "Удовлетворительно 📖";
-        else grade = "Стоит повторить материал 📘";
-        return `✅ Правильных ответов: ${correctCount} из ${testQuestions.length} (${percent}%)<br>${grade}`;
-    }
-
-    function attachTestEvents() {
-
-        const radios = document.querySelectorAll('input[type="radio"]');
-        radios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                if (testSubmitted) return;
-                const name = radio.name; // q0, q1...
-                const qIndex = parseInt(name.substring(1));
-                const val = parseInt(radio.value);
-                if (!isNaN(qIndex)) {
-                    userAnswers[qIndex] = val;
-                }
-            });
-        });
-
-        const checkBtn = document.getElementById('checkTestBtn');
-        if (checkBtn) {
-            checkBtn.addEventListener('click', () => {
-                // убедимся, что все ответы записаны
-                for (let i = 0; i < testQuestions.length; i++) {
-                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                    if (selected) {
-                        userAnswers[i] = parseInt(selected.value);
-                    }
-                }
-                testSubmitted = true;
-                renderContentByHash(); // перерисуем тест с результатом
-            });
-        }
-
-        const resetBtn = document.getElementById('resetTestBtn');
-        if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-                userAnswers = new Array(testQuestions.length).fill(null);
-                testSubmitted = false;
-                renderContentByHash();
-            });
+        document.getElementById("modalFileLink").innerHTML = fileHtml;
+        document.getElementById("modal").style.display = "block";
+        // вешаем обработчик скачивания
+        let downBtn = document.getElementById("modalDownloadPdf");
+        if (downBtn) {
+            downBtn.onclick = () => {
+                if (item.fileData) downloadPDF(item.fileData, item.fileName);
+                else alert("файл отсутствует");
+            };
         }
     }
 
-    function renderContentByHash() {
-        const hash = window.location.hash.slice(1);
-        const app = document.getElementById('app');
-        
-        if (hash === 'test') {
-            activeTab = 'test';
-            setActiveNav();
-            app.innerHTML = renderTest();
-            attachTestEvents();
-        } 
-        else if (hash.startsWith('lec_')) {
-            activeTab = 'home';
-            setActiveNav();
-            const id = hash.replace('lec_', '');
-            app.innerHTML = renderLecture(id);
-        }
-        else if (hash.startsWith('prac_')) {
-            activeTab = 'home';
-            setActiveNav();
-            const id = hash.replace('prac_', '');
-            app.innerHTML = renderPractice(id);
-        }
-        else {
-            // home
-            activeTab = 'home';
-            setActiveNav();
-            app.innerHTML = renderHome();
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        currentModalId = null;
+    }
+
+    function navigate(direction) {
+        if (!currentModalId) return;
+        let idx = modalOrderList.indexOf(currentModalId);
+        if (direction === 'prev' && idx > 0) {
+            openModalById(modalOrderList[idx-1]);
+        } else if (direction === 'next' && idx < modalOrderList.length-1) {
+            openModalById(modalOrderList[idx+1]);
+        } else if (direction === 'home') {
+            closeModal();
         }
     }
 
@@ -615,29 +618,115 @@
         });
     }
 
-    function initNavigation() {
-        const navLinks = document.querySelectorAll('.nav-btn');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                if (href === '#home') {
-                    window.location.hash = 'home';
-                } else if (href === '#test') {
-                    window.location.hash = 'test';
-                }
-            });
-        });
-        window.addEventListener('hashchange', () => {
-            renderContentByHash();
-        });
-        if (!window.location.hash || window.location.hash === '#home' || window.location.hash === '#') {
-            window.location.hash = 'home';
-        } else {
-            renderContentByHash();
-        }
+    function formatDate(d) {
+        if (!d) return "";
+        return d.toLocaleDateString('ru-RU', {day:'numeric', month:'short'});
     }
 
-    initNavigation();
+    function render() {
+        let container = document.getElementById('cardsGrid');
+        let filtered = getFiltered();
+        if (filtered.length === 0) {
+            container.innerHTML = `<div class="empty">пусто. добавь лекцию или практику 👆</div>`;
+            return;
+        }
+        container.innerHTML = filtered.map(item => {
+            let typeText = item.type === 'лекция' ? '📘 лекция' : '🔧 практика';
+            let typeClass = item.type === 'лекция' ? 'лекция' : 'практическая';
+            let fileIndicator = item.fileData ? '📎' : '';
+            return `
+                <div class="card" data-id="${item.id}">
+                    <div class="badge-line">
+                        <span class="disc">${escapeHtml(item.discipline)} ${fileIndicator}</span>
+                        <span class="type-badge ${typeClass}">${typeText}</span>
+                    </div>
+                    <h4>${escapeHtml(item.title)}</h4>
+                    <div class="desc-preview">${escapeHtml(item.description)}</div>
+                    <div class="card-footer">
+                        <span>📅 ${formatDate(item.createdAt)}</span>
+                        <div class="actions">
+                            <button class="edit-btn" data-id="${item.id}">ред</button>
+                            <button class="del-btn" data-id="${item.id}">уд</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        document.querySelectorAll('.del-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let id = btn.getAttribute('data-id');
+                if (confirm("удалить запись?")) deleteItem(id);
+            });
+        });
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let id = btn.getAttribute('data-id');
+                editItem(id);
+            });
+        });
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.classList.contains('edit-btn') || e.target.classList.contains('del-btn')) return;
+                let id = card.getAttribute('data-id');
+                openModalById(id);
+            });
+        });
+    }
+
+    function initUI() {
+        let add = document.getElementById('addBtn');
+        let discInp = document.getElementById('disc');
+        let typeInp = document.getElementById('type');
+        let titleInp = document.getElementById('title');
+        let descInp = document.getElementById('desc');
+        let fullTextarea = document.getElementById('fullText');
+        let fileInp = document.getElementById('pdfFile');
+
+        add.addEventListener('click', async () => {
+            let disc = discInp.value;
+            let t = typeInp.value;
+            let tit = titleInp.value;
+            let des = descInp.value;
+            let full = fullTextarea.value;
+            let file = fileInp.files[0];
+            let ok = await addItem(disc, t, tit, des, full, file);
+            if (ok) {
+                discInp.value = '';
+                titleInp.value = '';
+                descInp.value = '';
+                fullTextarea.value = '';
+                fileInp.value = '';
+                render();
+            }
+        });
+
+        let filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                let f = btn.getAttribute('data-filter');
+                currentFilter = f;
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                render();
+                if (currentModalId) closeModal();
+            });
+        });
+
+        let modal = document.getElementById('modal');
+        let closeSpan = document.querySelector('.close-modal');
+        closeSpan.onclick = () => closeModal();
+        window.onclick = (event) => { if (event.target === modal) closeModal(); };
+        document.getElementById('prevBtn').onclick = () => navigate('prev');
+        document.getElementById('nextBtn').onclick = () => navigate('next');
+        document.getElementById('homeBtn').onclick = () => navigate('home');
+    }
+
+    loadData();
+    initUI();
+    render();
 </script>
 </body>
 </html>
